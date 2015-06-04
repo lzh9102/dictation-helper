@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    void setupPlayerWidget();
 };
 
 #endif // MAINWINDOW_H
