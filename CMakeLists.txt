@@ -12,6 +12,7 @@ set(dictation_helper_SOURCES
     mainwindow.cpp
     myqmpwidget.cpp
     mediaplayerwidget.cpp
+    playercontroller.cpp
     )
 
 # ui files
