@@ -1,4 +1,5 @@
 #include <QSettings>
+#include <QFileDialog>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "mediaplayerwidget.h"
@@ -6,10 +7,12 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_player(NULL)
 {
     ui->setupUi(this);
     setupPlayerWidget();
+    setupSlots();
 
     loadSettings();
 }
@@ -22,6 +25,15 @@ MainWindow::~MainWindow()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     saveSettings();
+}
+
+void MainWindow::slotOpenAudio()
+{
+    Q_ASSERT(m_player != NULL);
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Audio File"));
+    if (!filename.isEmpty()) {
+        m_player->load(filename);
+    }
 }
 
 void MainWindow::setupPlayerWidget()
@@ -51,6 +63,13 @@ void MainWindow::setupPlayerWidget()
             ui->actionShowPlayer, SLOT(setChecked(bool)));
     connect(ui->actionShowPlayer, SIGNAL(toggled(bool)),
             ui->playerDock, SLOT(setShown(bool)));
+
+    m_player = player;
+}
+
+void MainWindow::setupSlots()
+{
+    connect(ui->actionOpenAudio, SIGNAL(triggered(bool)), SLOT(slotOpenAudio()));
 }
 
 void MainWindow::loadSettings()

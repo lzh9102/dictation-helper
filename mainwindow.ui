@@ -35,6 +35,13 @@
     </property>
     <addaction name="actionShowPlayer"/>
    </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpenAudio"/>
+   </widget>
+   <addaction name="menuFile"/>
    <addaction name="menuPlayback"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -49,6 +56,11 @@
    </property>
    <property name="text">
     <string>Show &amp;Player</string>
+   </property>
+  </action>
+  <action name="actionOpenAudio">
+   <property name="text">
+    <string>Open &amp;Audio</string>
    </property>
   </action>
  </widget>
