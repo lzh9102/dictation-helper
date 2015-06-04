@@ -1,3 +1,4 @@
+#include <QSettings>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "mediaplayerwidget.h"
@@ -9,10 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setupPlayerWidget();
+    loadSettings();
 }
 
 MainWindow::~MainWindow()
 {
+    saveSettings();
     delete ui;
 }
 
@@ -37,4 +40,18 @@ void MainWindow::setupPlayerWidget()
     layout->addWidget(player);
 
     ui->playerDock->setWidget(containerWidget);
+}
+
+void MainWindow::loadSettings()
+{
+    QSettings settings;
+    restoreGeometry(settings.value("mainwindow/geometry").toByteArray());
+    restoreState(settings.value("mainwindow/state").toByteArray());
+}
+
+void MainWindow::saveSettings()
+{
+    QSettings settings;
+    settings.setValue("mainwindow/geometry", saveGeometry());
+    settings.setValue("mainwindow/state", saveState());
 }
