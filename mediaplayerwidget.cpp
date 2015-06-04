@@ -244,6 +244,7 @@ void MediaPlayerWidget::load_volume()
         m_volume = 0;
     if (m_volume > MAX_VOLUME)
         m_volume = MAX_VOLUME;
+    ui->slideVolume->setValue(m_volume);
 }
 
 void MediaPlayerWidget::save_volume()
