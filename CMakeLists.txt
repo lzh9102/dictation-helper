@@ -25,9 +25,12 @@ set(dictation_helper_FORMS
 set(dictation_helper_TRANSLATIONS
 )
 
+# resource files
+qt4_add_resources(dictation_helper_RCC_SRCS images.qrc)
+
 # qmpwidget (embedded mplayer)
 set(dictation_helper_SOURCES
-    ${dictation_helper_SOURCES} qmpwidget/qmpwidget.cpp)
+    ${dictation_helper_SOURCES} ${dictation_helper_RCC_SRCS} qmpwidget/qmpwidget.cpp)
 
 # .ui -> .cxx
 qt4_wrap_ui(UI_SRCS ${dictation_helper_FORMS})

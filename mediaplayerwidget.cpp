@@ -39,7 +39,7 @@ MediaPlayerWidget::MediaPlayerWidget(QWidget *parent) :
     connect(mplayer, SIGNAL(stateChanged(int)), SLOT(playerStateChanged()));
     connect(ui->slideSeek, SIGNAL(valueChanged(int)), SLOT(seekSliderChanged()));
     connect(ui->btnPlayPause, SIGNAL(clicked()), SLOT(togglePlayPause()));
-    connect(ui->btnBack, SIGNAL(clicked()), SLOT(seekBack()));
+    connect(ui->btnBack, SIGNAL(clicked()), SLOT(seekBackward()));
     connect(ui->btnForward, SIGNAL(clicked()), SLOT(seekForward()));
     connect(ui->btnReset, SIGNAL(clicked()), SLOT(resetPosition()));
 
@@ -195,10 +195,10 @@ void MediaPlayerWidget::refreshTimeDisplay()
 
 void MediaPlayerWidget::refreshButtonState()
 {
-    QString button_icon = ":/actions/icons/media-playback-start";
+    QString button_icon = ":/actions/images/media-playback-start";
     switch (mplayer->state()) {
     case MyQMPwidget::PlayingState:
-        button_icon = ":/actions/icons/media-playback-pause"; break;
+        button_icon = ":/actions/images/media-playback-pause"; break;
     default:
         break;
     }

@@ -24,16 +24,16 @@
        <item>
         <widget class="QPushButton" name="btnPlayPause">
          <property name="icon">
-          <iconset resource="../images.qrc">
-           <normaloff>:/actions/icons/media-playback-start.png</normaloff>:/actions/icons/media-playback-start.png</iconset>
+          <iconset resource="images.qrc">
+           <normaloff>:/actions/images/media-playback-start.png</normaloff>:/actions/images/media-playback-start.png</iconset>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="btnReset">
          <property name="icon">
-          <iconset resource="../images.qrc">
-           <normaloff>:/actions/icons/media-skip-backward.png</normaloff>:/actions/icons/media-skip-backward.png</iconset>
+          <iconset resource="images.qrc">
+           <normaloff>:/actions/images/media-skip-backward.png</normaloff>:/actions/images/media-skip-backward.png</iconset>
          </property>
         </widget>
        </item>
@@ -43,16 +43,16 @@
           <string notr="true"/>
          </property>
          <property name="icon">
-          <iconset resource="../images.qrc">
-           <normaloff>:/actions/icons/media-seek-backward.png</normaloff>:/actions/icons/media-seek-backward.png</iconset>
+          <iconset resource="images.qrc">
+           <normaloff>:/actions/images/media-seek-backward.png</normaloff>:/actions/images/media-seek-backward.png</iconset>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="btnForward">
          <property name="icon">
-          <iconset resource="../images.qrc">
-           <normaloff>:/actions/icons/media-seek-forward.png</normaloff>:/actions/icons/media-seek-forward.png</iconset>
+          <iconset resource="images.qrc">
+           <normaloff>:/actions/images/media-seek-forward.png</normaloff>:/actions/images/media-seek-forward.png</iconset>
          </property>
         </widget>
        </item>
@@ -76,7 +76,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="pixmap">
-          <pixmap resource="../images.qrc">:/actions/icons/audio_volume.png</pixmap>
+          <pixmap>:/actions/icons/audio_volume.png</pixmap>
          </property>
         </widget>
        </item>
@@ -146,7 +146,7 @@
   <tabstop>btnPlayPause</tabstop>
  </tabstops>
  <resources>
-  <include location="../images.qrc"/>
+  <include location="images.qrc"/>
  </resources>
  <connections/>
 </ui>

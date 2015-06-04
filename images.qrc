@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/actions">
+        <file>images/media-playback-pause.png</file>
+        <file>images/media-playback-start.png</file>
+        <file>images/media-seek-backward.png</file>
+        <file>images/media-seek-forward.png</file>
+        <file>images/media-skip-backward.png</file>
+    </qresource>
+</RCC>
