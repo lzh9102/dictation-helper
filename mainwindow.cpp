@@ -1,5 +1,6 @@
 #include <QSettings>
 #include <QFileDialog>
+#include <QFontDialog>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "mediaplayerwidget.h"
@@ -33,6 +34,16 @@ void MainWindow::slotOpenAudio()
     QString filename = QFileDialog::getOpenFileName(this, tr("Open Audio File"));
     if (!filename.isEmpty()) {
         m_player->load(filename);
+    }
+}
+
+void MainWindow::slotSetEditorFont()
+{
+    bool ok;
+    QFont font = ui->editor->font();
+    font = QFontDialog::getFont(&ok, font, this);
+    if (ok) {
+        ui->editor->setFont(font);
     }
 }
 
@@ -70,6 +81,7 @@ void MainWindow::setupPlayerWidget()
 void MainWindow::setupSlots()
 {
     connect(ui->actionOpenAudio, SIGNAL(triggered(bool)), SLOT(slotOpenAudio()));
+    connect(ui->actionSetEditorFont, SIGNAL(triggered(bool)), SLOT(slotSetEditorFont()));
 }
 
 void MainWindow::loadSettings()
@@ -78,6 +90,12 @@ void MainWindow::loadSettings()
     restoreGeometry(settings.value("mainwindow/geometry").toByteArray());
     restoreState(settings.value("mainwindow/state").toByteArray());
     ui->actionShowPlayer->setChecked(settings.value("mainwindow/view/player", true).toBool());
+
+    // restore editor font
+    QFont font = ui->editor->font();
+    if (font.fromString(settings.value("mainwindow/editor/font").toString())) {
+        ui->editor->setFont(font);
+    }
 }
 
 void MainWindow::saveSettings()
@@ -86,4 +104,8 @@ void MainWindow::saveSettings()
     settings.setValue("mainwindow/geometry", saveGeometry());
     settings.setValue("mainwindow/state", saveState());
     settings.setValue("mainwindow/view/player", ui->actionShowPlayer->isChecked());
+
+    // save editor font
+    QFont font = ui->editor->font();
+    settings.setValue("mainwindow/editor/font", font.toString());
 }

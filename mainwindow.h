@@ -22,6 +22,7 @@ protected:
 
 private slots:
     void slotOpenAudio();
+    void slotSetEditorFont();
 
 private:
     Ui::MainWindow *ui;

@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPlainTextEdit" name="plainTextEdit"/>
+     <widget class="QPlainTextEdit" name="editor"/>
     </item>
    </layout>
   </widget>
@@ -34,6 +34,7 @@
      <string>&amp;View</string>
     </property>
     <addaction name="actionShowPlayer"/>
+    <addaction name="actionSetEditorFont"/>
    </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -61,6 +62,11 @@
   <action name="actionOpenAudio">
    <property name="text">
     <string>Open &amp;Audio</string>
+   </property>
+  </action>
+  <action name="actionSetEditorFont">
+   <property name="text">
+    <string>Set Editor &amp;Font</string>
    </property>
   </action>
  </widget>
