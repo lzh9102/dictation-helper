@@ -7,7 +7,6 @@
 #define DEFAULT_VOLUME 50
 #define MAX_VOLUME 100
 #define VOLUME_SETTING_KEY "mediaplayer/volume"
-#define MINIMUM_HEIGHT 210
 
 namespace {
 QString sec2hms(int seconds)
@@ -42,8 +41,6 @@ MediaPlayerWidget::MediaPlayerWidget(QWidget *parent) :
     connect(ui->btnBack, SIGNAL(clicked()), SLOT(seekBackward()));
     connect(ui->btnForward, SIGNAL(clicked()), SLOT(seekForward()));
     connect(ui->btnReset, SIGNAL(clicked()), SLOT(resetPosition()));
-
-    setMinimumHeight(MINIMUM_HEIGHT);
 
     load_volume();
 }
