@@ -29,6 +29,13 @@
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuPlayback">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionShowPlayer"/>
+   </widget>
+   <addaction name="menuPlayback"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="playerDock">
@@ -36,6 +43,14 @@
     <number>4</number>
    </attribute>
   </widget>
+  <action name="actionShowPlayer">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show &amp;Player</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

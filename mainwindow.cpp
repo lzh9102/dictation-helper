@@ -10,13 +10,18 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setupPlayerWidget();
+
     loadSettings();
 }
 
 MainWindow::~MainWindow()
 {
-    saveSettings();
     delete ui;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    saveSettings();
 }
 
 void MainWindow::setupPlayerWidget()
@@ -40,6 +45,12 @@ void MainWindow::setupPlayerWidget()
     layout->addWidget(player);
 
     ui->playerDock->setWidget(containerWidget);
+
+    // bind visibility to menu (View -> Show Player)
+    connect(ui->playerDock, SIGNAL(visibilityChanged(bool)),
+            ui->actionShowPlayer, SLOT(setChecked(bool)));
+    connect(ui->actionShowPlayer, SIGNAL(toggled(bool)),
+            ui->playerDock, SLOT(setShown(bool)));
 }
 
 void MainWindow::loadSettings()
@@ -47,6 +58,7 @@ void MainWindow::loadSettings()
     QSettings settings;
     restoreGeometry(settings.value("mainwindow/geometry").toByteArray());
     restoreState(settings.value("mainwindow/state").toByteArray());
+    ui->actionShowPlayer->setChecked(settings.value("mainwindow/view/player", true).toBool());
 }
 
 void MainWindow::saveSettings()
@@ -54,4 +66,5 @@ void MainWindow::saveSettings()
     QSettings settings;
     settings.setValue("mainwindow/geometry", saveGeometry());
     settings.setValue("mainwindow/state", saveState());
+    settings.setValue("mainwindow/view/player", ui->actionShowPlayer->isChecked());
 }
