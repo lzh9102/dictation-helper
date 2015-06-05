@@ -31,9 +31,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::slotOpenAudio()
 {
     Q_ASSERT(m_player != NULL);
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Audio File"));
+    QSettings settings;
+    QString path = settings.value("mainwindow/openaudio_path", QDir::homePath()).toString();
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Audio File"), path);
     if (!filename.isEmpty()) {
         m_player->load(filename);
+        settings.setValue("mainwindow/openaudio_path", filename);
     }
 }
 
