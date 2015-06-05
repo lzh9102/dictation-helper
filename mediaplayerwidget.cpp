@@ -23,7 +23,8 @@ QString sec2hms(int seconds)
 
 MediaPlayerWidget::MediaPlayerWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MediaPlayerWidget)
+    ui(new Ui::MediaPlayerWidget),
+    m_pointA(0.0), m_pointB(0.0)
 {
     ui->setupUi(this);
     ui->slideVolume->setRange(0, MAX_VOLUME);
@@ -42,6 +43,9 @@ MediaPlayerWidget::MediaPlayerWidget(QWidget *parent) :
     connect(ui->btnBack, SIGNAL(clicked()), SLOT(seekBackward()));
     connect(ui->btnForward, SIGNAL(clicked()), SLOT(seekForward()));
     connect(ui->btnReset, SIGNAL(clicked()), SLOT(resetPosition()));
+
+    connect(ui->btnPointA, SIGNAL(clicked(bool)), SLOT(slotPointA()));
+    connect(ui->btnPointB, SIGNAL(clicked(bool)), SLOT(slotPointB()));
 
     load_volume();
 }
@@ -81,6 +85,11 @@ void MediaPlayerWidget::load(const QString &url)
     ui->slideVolume->setValue(m_volume);
     mplayer->pause();
     ui->lblFilename->setText(m_file);
+
+    // clear A, B points
+    m_pointA = 0.0;
+    m_pointB = 0.0;
+    ui->btnPointB->setChecked(false);
 }
 
 void MediaPlayerWidget::reload()
@@ -126,6 +135,16 @@ void MediaPlayerWidget::togglePlayPause()
     default:
         break;
     }
+}
+
+void MediaPlayerWidget::pointA()
+{
+    ui->btnPointA->click();
+}
+
+void MediaPlayerWidget::pointB()
+{
+    ui->btnPointB->click();
 }
 
 // events
@@ -189,6 +208,11 @@ void MediaPlayerWidget::playerStateChanged()
 void MediaPlayerWidget::seekSliderChanged()
 {
     refreshTimeDisplay();
+
+    // reached point B
+    if (ui->btnPointB->isChecked() && mplayer->tell() >= m_pointB) {
+        mplayer->seek(m_pointA);
+    }
 }
 
 void MediaPlayerWidget::seekBackward()
@@ -204,6 +228,18 @@ void MediaPlayerWidget::seekForward()
 void MediaPlayerWidget::resetPosition()
 {
     mplayer->seek(0);
+}
+
+void MediaPlayerWidget::slotPointA()
+{
+    m_pointA = mplayer->tell();
+}
+
+void MediaPlayerWidget::slotPointB()
+{
+    if (ui->btnPointB->isChecked()) {
+        m_pointB = mplayer->tell();
+    }
 }
 
 void MediaPlayerWidget::load_volume()

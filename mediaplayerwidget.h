@@ -60,6 +60,21 @@ public slots:
      */
     void togglePlayPause();
 
+    /**
+     * @brief Trigger the PointA button to record PointA position.
+     */
+    void pointA();
+
+    /**
+     * @brief Trigger the PointB button.
+     *
+     * The PointB button has an ON/OFF state. If PointB is ON after being triggered,
+     * the current position is recorded as PointB position and the playback is restored
+     * to PointA.
+     */
+    void pointB();
+
+
 protected:
     void wheelEvent(QWheelEvent *);
     void mousePressEvent(QMouseEvent *);
@@ -72,11 +87,15 @@ private slots:
     void seekBackward();
     void seekForward();
     void resetPosition();
+    void slotPointA();
+    void slotPointB();
     
 private:
     Ui::MediaPlayerWidget *ui;
     MyQMPwidget *mplayer;
     QString m_file;
+
+    double m_pointA, m_pointB;
 
     int m_volume;
 

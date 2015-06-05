@@ -63,6 +63,26 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="btnPointA">
+         <property name="text">
+          <string notr="true">A</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnPointB">
+         <property name="text">
+          <string notr="true">B</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
