@@ -75,6 +75,14 @@ void MainWindow::setupPlayerWidget()
     connect(ui->actionShowPlayer, SIGNAL(toggled(bool)),
             ui->playerDock, SLOT(setShown(bool)));
 
+    // bind player control slots to menu
+    connect(ui->actionPlayPause, SIGNAL(triggered(bool)),
+            player, SLOT(togglePlayPause()));
+    connect(ui->actionFastForward, SIGNAL(triggered(bool)),
+            player, SLOT(seekForward()));
+    connect(ui->actionRewind, SIGNAL(triggered(bool)),
+            player, SLOT(seekBackward()));
+
     m_player = player;
 }
 

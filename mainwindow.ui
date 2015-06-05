@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>486</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPlayback">
@@ -42,7 +42,16 @@
     </property>
     <addaction name="actionOpenAudio"/>
    </widget>
+   <widget class="QMenu" name="menu_Playback">
+    <property name="title">
+     <string>&amp;Playback</string>
+    </property>
+    <addaction name="actionPlayPause"/>
+    <addaction name="actionFastForward"/>
+    <addaction name="actionRewind"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menu_Playback"/>
    <addaction name="menuPlayback"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -67,6 +76,30 @@
   <action name="actionSetEditorFont">
    <property name="text">
     <string>Set Editor &amp;Font</string>
+   </property>
+  </action>
+  <action name="actionPlayPause">
+   <property name="text">
+    <string>&amp;Play/Pause</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionFastForward">
+   <property name="text">
+    <string>&amp;Fast Forward</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionRewind">
+   <property name="text">
+    <string>&amp;Rewind</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
    </property>
   </action>
  </widget>
