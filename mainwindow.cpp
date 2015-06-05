@@ -4,7 +4,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "mediaplayerwidget.h"
-#include "playercontroller.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -65,7 +64,6 @@ void MainWindow::setupPlayerWidget()
     QWidget *containerWidget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
     MediaPlayerWidget *player = new MediaPlayerWidget(this);
-    PlayerController *controller = new PlayerController(player, this);
 
     containerWidget->setLayout(layout);
     layout->addWidget(player);
