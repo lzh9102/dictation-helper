@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>486</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPlayback">
@@ -44,11 +44,13 @@
    </widget>
    <widget class="QMenu" name="menu_Playback">
     <property name="title">
-     <string>&amp;Playback</string>
+     <string>P&amp;layback</string>
     </property>
     <addaction name="actionPlayPause"/>
     <addaction name="actionFastForward"/>
     <addaction name="actionRewind"/>
+    <addaction name="actionPointA"/>
+    <addaction name="actionPointB"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menu_Playback"/>
@@ -100,6 +102,22 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionPointA">
+   <property name="text">
+    <string>Point&amp;A</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
+  </action>
+  <action name="actionPointB">
+   <property name="text">
+    <string>Point&amp;B</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+2</string>
    </property>
   </action>
  </widget>
