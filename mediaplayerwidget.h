@@ -44,27 +44,11 @@ public slots:
     void play();
 
     /**
-     * @brief Play the media file from @a begin_sec to @a end_sec.
-     * The playback will pause as soon as @c position reaches @a end_sec.
-     * The range of the slider is not modified, as opposed to @c setRangeLimit().
-     *
-     * @param begin_sec the beginning point in seconds. -1 means play from beginning
-     * @param end_sec the end point in seconds. -1 means play until end
-     */
-    void playRange(int begin_sec, int end_sec);
-
-    /**
      * @brief Seek to @a sec and start playing.
      *
      * @param sec position in seconds
      */
     void seek(int sec);
-
-    /**
-     * @brief Seek to @a sec and pause.
-     * @param sec
-     */
-    void seek_and_pause(int sec);
 
     /**
      * @brief Pause the media playback.
@@ -94,8 +78,6 @@ private:
     MyQMPwidget *mplayer;
     QString m_file;
 
-    // media playback will stop when position() reaches m_playUntil
-    int m_playUntil;
     int m_volume;
 
     Q_DISABLE_COPY(MediaPlayerWidget)

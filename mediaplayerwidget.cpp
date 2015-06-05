@@ -23,8 +23,7 @@ QString sec2hms(int seconds)
 
 MediaPlayerWidget::MediaPlayerWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MediaPlayerWidget),
-    m_playUntil(-1)
+    ui(new Ui::MediaPlayerWidget)
 {
     ui->setupUi(this);
     ui->slideVolume->setRange(0, MAX_VOLUME);
@@ -95,21 +94,6 @@ void MediaPlayerWidget::play()
     refreshButtonState();
 }
 
-void MediaPlayerWidget::playRange(int begin_sec, int end_sec)
-{
-    if (mplayer->state() == MyQMPwidget::IdleState)
-        reload();
-    if (begin_sec >= 0)
-        seek(begin_sec);
-    else
-        seek(0);
-    if (end_sec >= 0)
-        m_playUntil = end_sec;
-    else
-        m_playUntil = -1;
-    play();
-}
-
 void MediaPlayerWidget::pause()
 {
     mplayer->pause();
@@ -119,14 +103,6 @@ void MediaPlayerWidget::pause()
 void MediaPlayerWidget::seek(int sec)
 {
     mplayer->seek(sec);
-}
-
-void MediaPlayerWidget::seek_and_pause(int sec)
-{
-    // seek() is asynchrous. If call mplayer->seek(); mplayer->pause(); in a row,
-    // the latter command will be ignored because seek() is not done yet.
-    mplayer->seek(sec);
-    m_playUntil = sec; // seek() is asynchrouse
 }
 
 void MediaPlayerWidget::togglePlayPause()
@@ -213,11 +189,6 @@ void MediaPlayerWidget::playerStateChanged()
 void MediaPlayerWidget::seekSliderChanged()
 {
     refreshTimeDisplay();
-    if (m_playUntil >= 0 && position() >= m_playUntil) {
-        // reaches temporary pause position
-        m_playUntil = -1;
-        pause();
-    }
 }
 
 void MediaPlayerWidget::seekBackward()
