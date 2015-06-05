@@ -90,7 +90,6 @@ void MediaPlayerWidget::reload()
 void MediaPlayerWidget::play()
 {
     mplayer->play();
-    ui->btnPlayPause->setFocus();
     refreshButtonState();
 }
 
@@ -112,7 +111,6 @@ void MediaPlayerWidget::playRange(int begin_sec, int end_sec)
 void MediaPlayerWidget::pause()
 {
     mplayer->pause();
-    ui->btnPlayPause->setFocus();
     refreshButtonState();
 }
 
