@@ -15,6 +15,13 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="QLabel" name="lblFilename">
+     <property name="text">
+      <string>Click File -&gt; Open Audio to open an audio file.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QVBoxLayout" name="layoutPlayer"/>
    </item>
    <item>

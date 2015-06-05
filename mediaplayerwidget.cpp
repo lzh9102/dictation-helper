@@ -1,5 +1,6 @@
 #include <QSettings>
 #include <QWheelEvent>
+#include <QLabel>
 #include "mediaplayerwidget.h"
 #include "ui_mediaplayerwidget.h"
 #include "myqmpwidget.h"
@@ -80,6 +81,7 @@ void MediaPlayerWidget::load(const QString &url)
     mplayer->load(url);
     ui->slideVolume->setValue(m_volume);
     mplayer->pause();
+    ui->lblFilename->setText(m_file);
 }
 
 void MediaPlayerWidget::reload()
