@@ -18,7 +18,17 @@ QString sec2hms(int seconds)
     QString result;
     result.sprintf("%02d:%02d:%02d", h, m, s);
     return result;
-} 
+}
+QString sec2hms(double seconds)
+{
+    int h = (int)seconds / 3600;
+    int m = ((int)seconds % 3600) / 60;
+    int s = ((int)seconds % 60);
+    int ms = (seconds - (int)seconds) * 1000;
+    QString result;
+    result.sprintf("%02d:%02d:%02d.%02d", h, m, s, ms/10);
+    return result;
+}
 }
 
 MediaPlayerWidget::MediaPlayerWidget(QWidget *parent) :
@@ -90,6 +100,8 @@ void MediaPlayerWidget::load(const QString &url)
     m_pointA = 0.0;
     m_pointB = 0.0;
     ui->btnPointB->setChecked(false);
+    ui->btnPointA->setText("A");
+    ui->btnPointB->setText("B");
 }
 
 void MediaPlayerWidget::reload()
@@ -233,12 +245,16 @@ void MediaPlayerWidget::resetPosition()
 void MediaPlayerWidget::slotPointA()
 {
     m_pointA = mplayer->tell();
+    ui->btnPointA->setText(QString("A: %1").arg(sec2hms(m_pointA)));
 }
 
 void MediaPlayerWidget::slotPointB()
 {
     if (ui->btnPointB->isChecked()) {
         m_pointB = mplayer->tell();
+        ui->btnPointB->setText(QString("B: %1").arg(sec2hms(m_pointB)));
+    } else {
+        ui->btnPointB->setText("B");
     }
 }
 
