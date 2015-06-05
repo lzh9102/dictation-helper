@@ -33,6 +33,7 @@ MediaPlayerWidget::MediaPlayerWidget(QWidget *parent) :
     mplayer->setSeekSlider(ui->slideSeek);
     mplayer->setVolumeSlider(ui->slideVolume);
     ui->layoutPlayer->addWidget(mplayer);
+    mplayer->hide();
     //ui->slideSeek->setStyleSheet(SLIDER_STYLESHEET);
 
     connect(mplayer, SIGNAL(stateChanged(int)), SLOT(playerStateChanged()));
