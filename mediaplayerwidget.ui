@@ -81,6 +81,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="lblVolume">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="images.qrc">:/actions/images/media-volume.png</pixmap>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QSlider" name="slideVolume">
          <property name="maximum">
           <number>100</number>
