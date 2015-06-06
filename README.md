@@ -1,5 +1,7 @@
 # Dictation Helper
 
+![Screenshot](http://lzh9102.github.io/dictation-helper/screenshots/1.png)
+
 This utility is a combination of an audio player and a text editor. Keyboard
 shortcuts are provided to control playback of the audio player while typing.
 The audio player contains the A-B points functionality to make it easier to
