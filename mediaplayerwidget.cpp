@@ -149,12 +149,12 @@ void MediaPlayerWidget::togglePlayPause()
     }
 }
 
-void MediaPlayerWidget::pointA()
+void MediaPlayerWidget::triggerPointA()
 {
     ui->btnPointA->click();
 }
 
-void MediaPlayerWidget::pointB()
+void MediaPlayerWidget::triggerPointB()
 {
     ui->btnPointB->click();
 }

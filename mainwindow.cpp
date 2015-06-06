@@ -150,9 +150,9 @@ void MainWindow::setupPlayerWidget()
     connect(ui->actionRewind, SIGNAL(triggered(bool)),
             player, SLOT(seekBackward()));
     connect(ui->actionPointA, SIGNAL(triggered(bool)),
-            player, SLOT(pointA()));
+            player, SLOT(triggerPointA()));
     connect(ui->actionPointB, SIGNAL(triggered(bool)),
-            player, SLOT(pointB()));
+            player, SLOT(triggerPointB()));
 
     m_player = player;
 }

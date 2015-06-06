@@ -63,7 +63,7 @@ public slots:
     /**
      * @brief Trigger the PointA button to record PointA position.
      */
-    void pointA();
+    void triggerPointA();
 
     /**
      * @brief Trigger the PointB button.
@@ -72,7 +72,7 @@ public slots:
      * the current position is recorded as PointB position and the playback is restored
      * to PointA.
      */
-    void pointB();
+    void triggerPointB();
 
 
 protected:
