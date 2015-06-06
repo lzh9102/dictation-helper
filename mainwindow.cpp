@@ -1,6 +1,8 @@
 #include <QSettings>
 #include <QFileDialog>
 #include <QFontDialog>
+#include <QMessageBox>
+#include <QTextStream>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "mediaplayerwidget.h"
@@ -36,6 +38,38 @@ void MainWindow::slotOpenAudio()
     if (!filename.isEmpty()) {
         m_player->load(filename);
         settings.setValue("mainwindow/openaudio_path", filename);
+    }
+}
+
+void MainWindow::slotSaveText()
+{
+    if (m_textFileName.isEmpty()) {
+        slotSaveTextAs();
+        return;
+    }
+
+    // save text to m_textFileName
+    QFile file(m_textFileName);
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream s(&file);
+        s << ui->editor->toPlainText();
+        file.close();
+    } else { // failed to open file for writing
+        QMessageBox::critical(this, tr("Error"),
+                              tr("Failed to save file: %1").arg(m_textFileName));
+    }
+}
+
+void MainWindow::slotSaveTextAs()
+{
+    QSettings settings;
+    QString path = settings.value("mainwindow/textfile_path", QDir::homePath()).toString();
+    QString filename = QFileDialog::getSaveFileName(this, tr("Save File"), path);
+    if (!filename.isEmpty()) {
+        m_textFileName = filename;
+        setWindowTitle(m_textFileName);
+        slotSaveText();
+        settings.setValue("mainwindow/textfile_path", filename);
     }
 }
 
@@ -95,6 +129,7 @@ void MainWindow::setupSlots()
 {
     connect(ui->actionOpenAudio, SIGNAL(triggered(bool)), SLOT(slotOpenAudio()));
     connect(ui->actionSetEditorFont, SIGNAL(triggered(bool)), SLOT(slotSetEditorFont()));
+    connect(ui->actionSaveText, SIGNAL(triggered(bool)), SLOT(slotSaveText()));
 }
 
 void MainWindow::loadSettings()
