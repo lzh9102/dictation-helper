@@ -22,6 +22,7 @@ protected:
 
 private slots:
     void slotOpenAudio();
+    void slotOpenText();
     void slotSaveText();
     void slotSaveTextAs();
     void slotSetEditorFont();
@@ -39,6 +40,7 @@ private:
     void loadSettings();
     void saveSettings();
 
+    void setTextFilePath(QString filename);
     bool confirmQuit();
 };
 

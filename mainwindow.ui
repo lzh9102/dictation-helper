@@ -41,6 +41,7 @@
      <string>&amp;File</string>
     </property>
     <addaction name="actionOpenAudio"/>
+    <addaction name="actionOpenText"/>
     <addaction name="actionSaveText"/>
     <addaction name="actionSaveTextAs"/>
    </widget>
@@ -136,6 +137,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionOpenText">
+   <property name="text">
+    <string>&amp;Open Text</string>
    </property>
   </action>
  </widget>

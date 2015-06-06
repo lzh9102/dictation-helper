@@ -47,6 +47,25 @@ void MainWindow::slotOpenAudio()
     }
 }
 
+void MainWindow::slotOpenText()
+{
+    QSettings settings;
+    QString path = settings.value("mainwindow/textfile_path", QDir::homePath()).toString();
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), path);
+    if (!filename.isEmpty()) {
+        QFile file(filename);
+        if (file.open(QFile::ReadOnly)) {
+            QTextStream s(&file);
+            ui->editor->setPlainText(s.readAll());
+            setTextFilePath(filename);
+            m_textDirty = false;
+        } else {
+            QMessageBox::critical(this, tr("Error"),
+                                  tr("Failed to open file: %1").arg(filename));
+        }
+    }
+}
+
 void MainWindow::slotSaveText()
 {
     if (m_textFileName.isEmpty()) {
@@ -73,10 +92,8 @@ void MainWindow::slotSaveTextAs()
     QString path = settings.value("mainwindow/textfile_path", QDir::homePath()).toString();
     QString filename = QFileDialog::getSaveFileName(this, tr("Save File"), path);
     if (!filename.isEmpty()) {
-        m_textFileName = filename;
-        setWindowTitle(m_textFileName);
+        setTextFilePath(filename);
         slotSaveText();
-        settings.setValue("mainwindow/textfile_path", filename);
     }
 }
 
@@ -140,6 +157,7 @@ void MainWindow::setupPlayerWidget()
 void MainWindow::setupSlots()
 {
     connect(ui->actionOpenAudio, SIGNAL(triggered(bool)), SLOT(slotOpenAudio()));
+    connect(ui->actionOpenText, SIGNAL(triggered(bool)), SLOT(slotOpenText()));
     connect(ui->actionSetEditorFont, SIGNAL(triggered(bool)), SLOT(slotSetEditorFont()));
     connect(ui->actionSaveText, SIGNAL(triggered(bool)), SLOT(slotSaveText()));
     connect(ui->actionSaveTextAs, SIGNAL(triggered(bool)), SLOT(slotSaveTextAs()));
@@ -170,6 +188,13 @@ void MainWindow::saveSettings()
     // save editor font
     QFont font = ui->editor->font();
     settings.setValue("mainwindow/editor/font", font.toString());
+}
+
+void MainWindow::setTextFilePath(QString filename)
+{
+    m_textFileName = filename;
+    setWindowTitle(filename);
+    QSettings().setValue("mainwindow/textfile_path", filename);
 }
 
 bool MainWindow::confirmQuit()
