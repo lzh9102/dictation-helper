@@ -37,3 +37,8 @@ make
 ## Known Issues
 
 - seeking is not accurate for video files (e.g. mp4)
+
+## License
+
+This work is released under the GNU General Public License version 3. See
+[COPYING](COPYING) for details.
