@@ -203,7 +203,8 @@ bool MainWindow::confirmDiscardText()
         int response = QMessageBox::question(this, tr("Discard"),
                                              tr("The file contains unsaved changes. "
                                                 "Continue without saving?"),
-                                             QMessageBox::Yes | QMessageBox::No);
+                                             QMessageBox::Yes | QMessageBox::No,
+                                             QMessageBox::No);
         if (response != QMessageBox::Yes)
             return false;
     }
