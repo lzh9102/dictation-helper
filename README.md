@@ -33,3 +33,7 @@ cd build
 cmake ..
 make
 ```
+
+## Known Issues
+
+- seeking is not accurate for video files (e.g. mp4)
