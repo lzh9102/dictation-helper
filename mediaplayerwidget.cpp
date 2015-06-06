@@ -86,6 +86,19 @@ double MediaPlayerWidget::position() const
     return mplayer->tell();
 }
 
+double MediaPlayerWidget::pointA() const
+{
+    return m_pointA;
+}
+
+double MediaPlayerWidget::pointB() const
+{
+    if (ui->btnPointB->isChecked())
+        return m_pointB;
+    else
+        return duration();
+}
+
 // public slots
 
 void MediaPlayerWidget::load(const QString &url)

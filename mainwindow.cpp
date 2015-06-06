@@ -7,6 +7,20 @@
 #include "ui_mainwindow.h"
 #include "mediaplayerwidget.h"
 
+namespace
+{
+QString formatTimeStamp(double t)
+{
+    int h = (int)t / 3600;
+    int m = ((int)t % 3600) / 60;
+    int s = ((int)t % 60);
+    int ms = (t - (int)t) * 1000;
+    QString result;
+    result.sprintf("%02d:%02d:%02d,%03d", h, m, s, ms);
+    return result;
+}
+}
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -115,6 +129,15 @@ void MainWindow::slotTextChanged()
     m_textDirty = true;
 }
 
+void MainWindow::slotInsertTimeRange()
+{
+    double p1 = m_player->pointA();
+    double p2 = m_player->pointB();
+    QString text = QString("%1 --> %2").arg(formatTimeStamp(p1),
+                                            formatTimeStamp(p2));
+    ui->editor->insertPlainText(text);
+}
+
 void MainWindow::setupPlayerWidget()
 {
     /* Use the following hierarchy to put multiple widgets in a dockWidget.
@@ -164,6 +187,7 @@ void MainWindow::setupSlots()
     connect(ui->actionSetEditorFont, SIGNAL(triggered(bool)), SLOT(slotSetEditorFont()));
     connect(ui->actionSaveText, SIGNAL(triggered(bool)), SLOT(slotSaveText()));
     connect(ui->actionSaveTextAs, SIGNAL(triggered(bool)), SLOT(slotSaveTextAs()));
+    connect(ui->actionInsertTimeRange, SIGNAL(triggered(bool)), SLOT(slotInsertTimeRange()));
     connect(ui->editor, SIGNAL(textChanged()), SLOT(slotTextChanged()));
 }
 

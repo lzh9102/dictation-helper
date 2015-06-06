@@ -27,6 +27,7 @@ private slots:
     void slotSaveTextAs();
     void slotSetEditorFont();
     void slotTextChanged();
+    void slotInsertTimeRange();
 
 private:
     Ui::MainWindow *ui;

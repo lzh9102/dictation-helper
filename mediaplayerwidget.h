@@ -21,6 +21,9 @@ public:
     double duration() const;
     double position() const;
 
+    double pointA() const;
+    double pointB() const;
+
 signals:
     void stateChanged();
 

@@ -55,7 +55,14 @@
     <addaction name="actionPointA"/>
     <addaction name="actionPointB"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionInsertTimeRange"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menu_Playback"/>
    <addaction name="menuPlayback"/>
   </widget>
@@ -142,6 +149,14 @@
   <action name="actionOpenText">
    <property name="text">
     <string>&amp;Open Text</string>
+   </property>
+  </action>
+  <action name="actionInsertTimeRange">
+   <property name="text">
+    <string>Insert &amp;Time Range</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
  </widget>
