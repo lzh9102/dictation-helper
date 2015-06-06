@@ -142,6 +142,7 @@ void MainWindow::setupSlots()
     connect(ui->actionOpenAudio, SIGNAL(triggered(bool)), SLOT(slotOpenAudio()));
     connect(ui->actionSetEditorFont, SIGNAL(triggered(bool)), SLOT(slotSetEditorFont()));
     connect(ui->actionSaveText, SIGNAL(triggered(bool)), SLOT(slotSaveText()));
+    connect(ui->actionSaveTextAs, SIGNAL(triggered(bool)), SLOT(slotSaveTextAs()));
     connect(ui->editor, SIGNAL(textChanged()), SLOT(slotTextChanged()));
 }
 

@@ -42,6 +42,7 @@
     </property>
     <addaction name="actionOpenAudio"/>
     <addaction name="actionSaveText"/>
+    <addaction name="actionSaveTextAs"/>
    </widget>
    <widget class="QMenu" name="menu_Playback">
     <property name="title">
@@ -127,6 +128,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveTextAs">
+   <property name="text">
+    <string>Save Text A&amp;s</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
  </widget>
