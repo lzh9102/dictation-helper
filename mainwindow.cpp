@@ -27,7 +27,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    if (!confirmQuit()) {
+    if (!confirmDiscardText()) {
         event->ignore();
         return;
     }
@@ -197,12 +197,12 @@ void MainWindow::setTextFilePath(QString filename)
     QSettings().setValue("mainwindow/textfile_path", filename);
 }
 
-bool MainWindow::confirmQuit()
+bool MainWindow::confirmDiscardText()
 {
     if (m_textDirty) {
-        int response = QMessageBox::question(this, tr("Quit"),
-                                             tr("File not saved. "
-                                                "Quit the program without saving?"),
+        int response = QMessageBox::question(this, tr("Discard"),
+                                             tr("The file contains unsaved changes. "
+                                                "Continue without saving?"),
                                              QMessageBox::Yes | QMessageBox::No);
         if (response != QMessageBox::Yes)
             return false;

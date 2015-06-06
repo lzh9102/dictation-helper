@@ -41,7 +41,7 @@ private:
     void saveSettings();
 
     void setTextFilePath(QString filename);
-    bool confirmQuit();
+    bool confirmDiscardText();
 };
 
 #endif // MAINWINDOW_H
