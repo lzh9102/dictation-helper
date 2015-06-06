@@ -7,6 +7,12 @@ shortcuts are provided to control playback of the audio player while typing.
 The audio player contains the A-B points functionality to make it easier to
 repeat a sentence over and over again.
 
+## Key Features
+
+- keyboard shortcuts for forward, backward, play/pause
+- A-B loop
+- insert A-B loop timestamps to editor
+
 ## Dependencies
 
 The following packages are required to build this program:
