@@ -10,7 +10,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_player(NULL)
+    m_player(NULL),
+    m_textDirty(false)
 {
     ui->setupUi(this);
     setupPlayerWidget();
@@ -26,6 +27,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    if (!confirmQuit()) {
+        event->ignore();
+        return;
+    }
+
     saveSettings();
 }
 
@@ -54,6 +60,7 @@ void MainWindow::slotSaveText()
         QTextStream s(&file);
         s << ui->editor->toPlainText();
         file.close();
+        m_textDirty = false;
     } else { // failed to open file for writing
         QMessageBox::critical(this, tr("Error"),
                               tr("Failed to save file: %1").arg(m_textFileName));
@@ -81,6 +88,11 @@ void MainWindow::slotSetEditorFont()
     if (ok) {
         ui->editor->setFont(font);
     }
+}
+
+void MainWindow::slotTextChanged()
+{
+    m_textDirty = true;
 }
 
 void MainWindow::setupPlayerWidget()
@@ -130,6 +142,7 @@ void MainWindow::setupSlots()
     connect(ui->actionOpenAudio, SIGNAL(triggered(bool)), SLOT(slotOpenAudio()));
     connect(ui->actionSetEditorFont, SIGNAL(triggered(bool)), SLOT(slotSetEditorFont()));
     connect(ui->actionSaveText, SIGNAL(triggered(bool)), SLOT(slotSaveText()));
+    connect(ui->editor, SIGNAL(textChanged()), SLOT(slotTextChanged()));
 }
 
 void MainWindow::loadSettings()
@@ -156,4 +169,17 @@ void MainWindow::saveSettings()
     // save editor font
     QFont font = ui->editor->font();
     settings.setValue("mainwindow/editor/font", font.toString());
+}
+
+bool MainWindow::confirmQuit()
+{
+    if (m_textDirty) {
+        int response = QMessageBox::question(this, tr("Quit"),
+                                             tr("File not saved. "
+                                                "Quit the program without saving?"),
+                                             QMessageBox::Yes | QMessageBox::No);
+        if (response != QMessageBox::Yes)
+            return false;
+    }
+    return true;
 }

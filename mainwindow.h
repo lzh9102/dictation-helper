@@ -25,17 +25,21 @@ private slots:
     void slotSaveText();
     void slotSaveTextAs();
     void slotSetEditorFont();
+    void slotTextChanged();
 
 private:
     Ui::MainWindow *ui;
     MediaPlayerWidget *m_player;
 
     QString m_textFileName; // text file will be set to this path
+    bool m_textDirty; // text not saved yet
 
     void setupPlayerWidget();
     void setupSlots();
     void loadSettings();
     void saveSettings();
+
+    bool confirmQuit();
 };
 
 #endif // MAINWINDOW_H
