@@ -49,6 +49,9 @@ void MainWindow::slotOpenAudio()
 
 void MainWindow::slotOpenText()
 {
+    if (!confirmDiscardText())
+        return;
+
     QSettings settings;
     QString path = settings.value("mainwindow/textfile_path", QDir::homePath()).toString();
     QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), path);
