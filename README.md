@@ -38,6 +38,11 @@ make
 
 - seeking is not accurate for video files (e.g. mp4)
 
+## Acknowledgement
+
+This project uses [qmpwidget](http://qmpwidget.sourceforge.net/#about), written
+by Jonas Gehring, to interface with mplayer.
+
 ## License
 
 This work is released under the GNU General Public License version 3. See
