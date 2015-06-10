@@ -36,6 +36,8 @@ private:
     QString m_textFileName; // text file will be set to this path
     bool m_textDirty; // text not saved yet
 
+    QString buildAudioFileFilter();
+
     void setupPlayerWidget();
     void setupSlots();
     void loadSettings();

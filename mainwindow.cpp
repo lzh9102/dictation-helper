@@ -54,7 +54,12 @@ void MainWindow::slotOpenAudio()
     Q_ASSERT(m_player != NULL);
     QSettings settings;
     QString path = settings.value("mainwindow/openaudio_path", QDir::homePath()).toString();
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Audio File"), path);
+    QString filename = QFileDialog::getOpenFileName(
+                this,
+                tr("Open Audio File"),
+                path,
+                buildAudioFileFilter()
+                );
     if (!filename.isEmpty()) {
         m_player->load(filename);
         settings.setValue("mainwindow/openaudio_path", filename);
@@ -136,6 +141,13 @@ void MainWindow::slotInsertTimeRange()
     QString text = QString("%1 --> %2").arg(formatTimeStamp(p1),
                                             formatTimeStamp(p2));
     ui->editor->insertPlainText(text);
+}
+
+QString MainWindow::buildAudioFileFilter()
+{
+    return tr("Audio files (%1)").arg("*.mp3 *.ogg *.wav *.wma *.ac3 *.ra *.ape *.flac")
+            + ";;"
+            + tr("All files (%1)").arg("*.*");
 }
 
 void MainWindow::setupPlayerWidget()
