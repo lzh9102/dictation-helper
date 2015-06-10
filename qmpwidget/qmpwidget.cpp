@@ -927,7 +927,10 @@ void QMPwidget::load(const QString &url)
 	writeCommand("pausing_keep_force pt_step 1");
 	writeCommand("get_property pause");
 
-	writeCommand(QString("loadfile '%1'").arg(url));
+    // escape single quote in url
+    QString url_escaped = QString(url).replace("'", "\\'");
+
+    writeCommand(QString("loadfile '%1'").arg(url_escaped));
 }
 
 /*!
